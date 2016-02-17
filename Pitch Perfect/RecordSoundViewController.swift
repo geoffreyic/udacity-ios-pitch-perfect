@@ -14,6 +14,7 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var Microphone: UIButton!
     @IBOutlet weak var RecordText: UILabel!
     @IBOutlet weak var StopButton: UIButton!
+    @IBOutlet weak var PauseResumeButton: UIButton!
     
     var recorder: AVAudioRecorder!
     var recordedAudio: RecordedAudio!
@@ -27,6 +28,7 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewWillAppear(animated: Bool) {
         StopButton.hidden = true
+        PauseResumeButton.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +41,7 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func startRecording(sender: AnyObject) {
         RecordText.text = "Recording..."
         StopButton.hidden = false
+        PauseResumeButton.hidden = false
         Microphone.enabled = false
         
         
@@ -69,10 +72,23 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         recorder.record()
         
     }
+    @IBAction func pauseResumeRecording(sender: AnyObject) {
+        
+        if(recorder.recording){
+            PauseResumeButton.setImage(UIImage(named: "Resume"), forState: .Normal)
+            recorder.pause()
+            RecordText.text = "Press resume to resume recording"
+        }else{
+            PauseResumeButton.setImage(UIImage(named: "Pause"), forState: .Normal)
+            recorder.record()
+            RecordText.text = "Recording..."
+        }
+    }
 
     @IBAction func stopRecording(sender: AnyObject) {
         RecordText.text = "Press Microphone to Record"
         Microphone.enabled = true
+        PauseResumeButton.setImage(UIImage(named: "Pause"), forState: .Normal)
         
         recorder.stop()
         

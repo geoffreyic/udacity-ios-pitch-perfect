@@ -40,9 +40,7 @@ class PlaySoundViewController: UIViewController {
     }
     
     func playWithPitch(pitch: Float){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopResetAll()
         
         let audioNode = AVAudioPlayerNode()
         let audioTimePitch = AVAudioUnitTimePitch()
@@ -54,8 +52,6 @@ class PlaySoundViewController: UIViewController {
         audioEngine.connect(audioNode, to:audioTimePitch, format: nil)
         audioEngine.connect(audioTimePitch as AVAudioNode, to:audioEngine.outputNode, format: nil)
         
-        
-        
         audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
         do{
             try audioEngine.start()
@@ -66,17 +62,62 @@ class PlaySoundViewController: UIViewController {
     
     
     func playWithSpeed(speed: Float){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
-        
+        stopResetAll()
         
         audioPlayer.rate = speed
         audioPlayer.currentTime = 0
         
         audioPlayer.play()
+    }
+    
+    func playWithEcho(delay: Float){
+        stopResetAll()
         
+        let audioNode = AVAudioPlayerNode()
+        let audioUnitDelay = AVAudioUnitDelay()
+        audioUnitDelay.delayTime = NSTimeInterval(delay)
         
+        audioEngine.attachNode(audioNode)
+        audioEngine.attachNode(audioUnitDelay)
+        
+        audioEngine.connect(audioNode, to:audioUnitDelay, format: nil)
+        audioEngine.connect(audioUnitDelay as AVAudioNode, to:audioEngine.outputNode, format: nil)
+        
+        audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
+        do{
+            try audioEngine.start()
+        }catch{}
+        
+        audioNode.play()
+    }
+    
+    func playWithReverb(){
+        stopResetAll()
+        
+        let audioNode = AVAudioPlayerNode()
+        let audioUnitReverb = AVAudioUnitReverb()
+        audioUnitReverb.loadFactoryPreset(.LargeHall)
+        audioUnitReverb.wetDryMix = 50
+        
+        audioEngine.attachNode(audioNode)
+        audioEngine.attachNode(audioUnitReverb)
+        
+        audioEngine.connect(audioNode, to:audioUnitReverb, format: nil)
+        audioEngine.connect(audioUnitReverb as AVAudioNode, to:audioEngine.outputNode, format: nil)
+        
+        audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
+        do{
+            try audioEngine.start()
+        }catch{}
+        
+        audioNode.play()
+    }
+    
+    
+    func stopResetAll(){
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
     }
     
 
@@ -113,7 +154,21 @@ class PlaySoundViewController: UIViewController {
         print("slow")
         playWithSpeed(0.5)
     }
+    @IBAction func playEcho(sender: AnyObject) {
+        print("echo")
+        playWithEcho(0.2)
+    }
 
+    @IBAction func playReverb(sender: AnyObject) {
+        print("reverb")
+        playWithReverb()
+    }
+    
+    @IBAction func stopPlaying(sender: AnyObject) {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+    }
     
     
     
