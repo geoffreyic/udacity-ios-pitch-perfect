@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		140935B11C7261FE00679A4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140935B01C7261FE00679A4B /* AppDelegate.swift */; };
-		140935B31C7261FE00679A4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140935B21C7261FE00679A4B /* ViewController.swift */; };
+		140935B31C7261FE00679A4B /* RecordSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140935B21C7261FE00679A4B /* RecordSoundViewController.swift */; };
 		140935B61C7261FE00679A4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 140935B41C7261FE00679A4B /* Main.storyboard */; };
 		140935B81C7261FE00679A4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 140935B71C7261FE00679A4B /* Assets.xcassets */; };
 		140935BB1C7261FE00679A4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 140935B91C7261FE00679A4B /* LaunchScreen.storyboard */; };
+		140935C31C7262AE00679A4B /* PlaySoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140935C21C7262AE00679A4B /* PlaySoundViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		140935AD1C7261FE00679A4B /* Pitch Perfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pitch Perfect.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		140935B01C7261FE00679A4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		140935B21C7261FE00679A4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		140935B21C7261FE00679A4B /* RecordSoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSoundViewController.swift; sourceTree = "<group>"; };
 		140935B51C7261FE00679A4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		140935B71C7261FE00679A4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		140935BA1C7261FE00679A4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		140935BC1C7261FE00679A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		140935C21C7262AE00679A4B /* PlaySoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +57,9 @@
 			isa = PBXGroup;
 			children = (
 				140935B01C7261FE00679A4B /* AppDelegate.swift */,
-				140935B21C7261FE00679A4B /* ViewController.swift */,
+				140935B21C7261FE00679A4B /* RecordSoundViewController.swift */,
 				140935B41C7261FE00679A4B /* Main.storyboard */,
+				140935C21C7262AE00679A4B /* PlaySoundViewController.swift */,
 				140935B71C7261FE00679A4B /* Assets.xcassets */,
 				140935B91C7261FE00679A4B /* LaunchScreen.storyboard */,
 				140935BC1C7261FE00679A4B /* Info.plist */,
@@ -135,7 +138,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				140935B31C7261FE00679A4B /* ViewController.swift in Sources */,
+				140935B31C7261FE00679A4B /* RecordSoundViewController.swift in Sources */,
+				140935C31C7262AE00679A4B /* PlaySoundViewController.swift in Sources */,
 				140935B11C7261FE00679A4B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +290,7 @@
 				140935C11C7261FE00679A4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
