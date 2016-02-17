@@ -13,6 +13,7 @@
 		140935B81C7261FE00679A4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 140935B71C7261FE00679A4B /* Assets.xcassets */; };
 		140935BB1C7261FE00679A4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 140935B91C7261FE00679A4B /* LaunchScreen.storyboard */; };
 		140935C31C7262AE00679A4B /* PlaySoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140935C21C7262AE00679A4B /* PlaySoundViewController.swift */; };
+		140935C51C74EDA300679A4B /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140935C41C74EDA300679A4B /* RecordedAudio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		140935BA1C7261FE00679A4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		140935BC1C7261FE00679A4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		140935C21C7262AE00679A4B /* PlaySoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundViewController.swift; sourceTree = "<group>"; };
+		140935C41C74EDA300679A4B /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordedAudio.swift; path = ../RecordedAudio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		140935AF1C7261FE00679A4B /* Pitch Perfect */ = {
 			isa = PBXGroup;
 			children = (
+				140935C41C74EDA300679A4B /* RecordedAudio.swift */,
 				140935B01C7261FE00679A4B /* AppDelegate.swift */,
 				140935B21C7261FE00679A4B /* RecordSoundViewController.swift */,
 				140935B41C7261FE00679A4B /* Main.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140935C51C74EDA300679A4B /* RecordedAudio.swift in Sources */,
 				140935B31C7261FE00679A4B /* RecordSoundViewController.swift in Sources */,
 				140935C31C7262AE00679A4B /* PlaySoundViewController.swift in Sources */,
 				140935B11C7261FE00679A4B /* AppDelegate.swift in Sources */,

@@ -96,7 +96,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJr-e4-U4S" userLabel="ChipmunkButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJr-e4-U4S" userLabel="ChipmunkButton">
                                 <rect key="frame" x="60" y="100" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="2iz-As-oKG"/>
@@ -104,20 +104,18 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="Chipmunk"/>
                                 <connections>
-                                    <action selector="PlayChipmunk:" destination="O6m-bN-weQ" eventType="touchUpInside" id="20S-ol-fkJ"/>
                                     <action selector="playChipmunk:" destination="O6m-bN-weQ" eventType="touchUpInside" id="2kz-01-1xD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Nd-YN-D1Z" userLabel="VaderButton">
-                                <rect key="frame" x="440" y="100" width="100" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8h-kq-DRD" userLabel="FastButton">
+                                <rect key="frame" x="60" y="420" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="IPG-lz-kL7"/>
-                                    <constraint firstAttribute="width" constant="100" id="mXL-dE-ige"/>
+                                    <constraint firstAttribute="width" constant="100" id="Vba-px-Zpv"/>
+                                    <constraint firstAttribute="height" constant="100" id="usm-OC-BYS"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="DarthVader"/>
+                                <state key="normal" title="Button" image="Fast"/>
                                 <connections>
-                                    <action selector="PlayVader:" destination="O6m-bN-weQ" eventType="touchUpInside" id="uVU-sg-qlg"/>
-                                    <action selector="playVader:" destination="O6m-bN-weQ" eventType="touchUpInside" id="2V4-Og-g3U"/>
+                                    <action selector="playFast:" destination="O6m-bN-weQ" eventType="touchUpInside" id="eWG-6Y-FFP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wcs-iF-7lL" userLabel="SlowButton">
@@ -131,16 +129,15 @@
                                     <action selector="playSlow:" destination="O6m-bN-weQ" eventType="touchUpInside" id="rvf-iq-wvM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8h-kq-DRD" userLabel="FastButton">
-                                <rect key="frame" x="60" y="420" width="100" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Nd-YN-D1Z" userLabel="VaderButton">
+                                <rect key="frame" x="440" y="100" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Vba-px-Zpv"/>
-                                    <constraint firstAttribute="height" constant="100" id="usm-OC-BYS"/>
+                                    <constraint firstAttribute="height" constant="100" id="IPG-lz-kL7"/>
+                                    <constraint firstAttribute="width" constant="100" id="mXL-dE-ige"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="Fast"/>
+                                <state key="normal" title="Button" image="DarthVader"/>
                                 <connections>
-                                    <action selector="PlayFast:" destination="O6m-bN-weQ" eventType="touchUpInside" id="jEd-IQ-wvU"/>
-                                    <action selector="playFast:" destination="O6m-bN-weQ" eventType="touchUpInside" id="eWG-6Y-FFP"/>
+                                    <action selector="playVader:" destination="O6m-bN-weQ" eventType="touchUpInside" id="2V4-Og-g3U"/>
                                 </connections>
                             </button>
                         </subviews>

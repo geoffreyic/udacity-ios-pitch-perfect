@@ -9,16 +9,20 @@
 import UIKit
 import AVFoundation
 
-class RecordSoundViewController: UIViewController {
+class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
 
     @IBOutlet weak var Microphone: UIButton!
     @IBOutlet weak var RecordText: UILabel!
     @IBOutlet weak var StopButton: UIButton!
     
+    var recorder: AVAudioRecorder!
+    var recordedAudio: RecordedAudio!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -35,15 +39,68 @@ class RecordSoundViewController: UIViewController {
     @IBAction func startRecording(sender: AnyObject) {
         RecordText.text = "Recording..."
         StopButton.hidden = false
+        Microphone.enabled = false
+        
+        
+        
+        let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "ddMMyyyy-HHmmss"
+        
+        let fileName = formatter.stringFromDate(NSDate())+".wav"
+        let pathArray = [directory, fileName]
+        
+        let filePath = NSURL.fileURLWithPathComponents(pathArray)!
+        
+        print(filePath)
+        
+        let session = AVAudioSession.sharedInstance()
+        do{
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        }catch{
+            
+        }
+        
+        recorder = try! AVAudioRecorder(URL: filePath, settings: [:])
+        recorder.delegate = self
+            
+        recorder.meteringEnabled = true;
+            
+        recorder.record()
+        
     }
 
     @IBAction func stopRecording(sender: AnyObject) {
         RecordText.text = "Press Microphone to Record"
+        Microphone.enabled = true
         
-        performSegueWithIdentifier("PlayRecordingSegue", sender: self)
+        recorder.stop()
+        
+        do{
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setActive(false)
+        }catch{}
+        
+        recordedAudio = RecordedAudio(url: recorder.url)
     }
     
-    // overide func prepareForSegue
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
+        // do stuff on finish
+        
+        self.performSegueWithIdentifier("PlayRecordingSegue", sender: recordedAudio)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        if(segue.identifier == "PlayRecordingSegue"){
+            let vc:PlaySoundViewController = segue.destinationViewController as! PlaySoundViewController
+            let ra:RecordedAudio = sender as! RecordedAudio
+            
+            vc.recordedAudio = ra
+            
+            
+        }
+        
+    }
     
 }
 
