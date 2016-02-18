@@ -32,7 +32,6 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
 	}
 	
 	
-	
 	@IBAction func startRecording(sender: AnyObject) {
 		RecordText.text = "Recording..."
 		StopButton.hidden = false
@@ -42,10 +41,8 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
 		let directory = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
 		let formatter = NSDateFormatter()
 		formatter.dateFormat = "ddMMyyyy-HHmmss"
-		
 		let fileName = formatter.stringFromDate(NSDate())+".wav"
 		let pathArray = [directory, fileName]
-		
 		let filePath = NSURL.fileURLWithPathComponents(pathArray)!
 		
 		let session = AVAudioSession.sharedInstance()
@@ -55,11 +52,14 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
 			ErrorMessage.hidden = false
 		}
 		
-		recorder = try! AVAudioRecorder(URL: filePath, settings: [:])
+		do{
+			try recorder = AVAudioRecorder(URL: filePath, settings: [:])
+		}catch{
+			ErrorMessage.hidden = false
+		}
+		
 		recorder.delegate = self
-		
 		recorder.meteringEnabled = true;
-		
 		recorder.record()
 		
 	}
