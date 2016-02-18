@@ -17,6 +17,8 @@ class PlaySoundViewController: UIViewController {
     var audioPlayer:AVAudioPlayer!
     var audioEngine:AVAudioEngine!
     
+    @IBOutlet weak var ErrorMessage: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,17 +26,19 @@ class PlaySoundViewController: UIViewController {
         
         audioEngine = AVAudioEngine()
         
-        print(recordedAudio.url)
-        
         do{
             try audioPlayer = AVAudioPlayer.init(contentsOfURL: recordedAudio.url)
-        }catch{}
+        }catch{
+            ErrorMessage.hidden = false
+        }
         
         audioPlayer.enableRate = true
         
         do{
             try self.audioFile = AVAudioFile(forReading: recordedAudio.url)
-        }catch{}
+        }catch{
+            ErrorMessage.hidden = false
+        }
         
         
     }
@@ -55,7 +59,9 @@ class PlaySoundViewController: UIViewController {
         audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
         do{
             try audioEngine.start()
-        }catch{}
+        }catch{
+            ErrorMessage.hidden = false
+        }
         
         audioNode.play()
     }
@@ -86,7 +92,9 @@ class PlaySoundViewController: UIViewController {
         audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
         do{
             try audioEngine.start()
-        }catch{}
+        }catch{
+            ErrorMessage.hidden = false
+        }
         
         audioNode.play()
     }
@@ -108,7 +116,9 @@ class PlaySoundViewController: UIViewController {
         audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
         do{
             try audioEngine.start()
-        }catch{}
+        }catch{
+            ErrorMessage.hidden = false
+        }
         
         audioNode.play()
     }
@@ -123,53 +133,31 @@ class PlaySoundViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     
     @IBAction func playChipmunk(sender: AnyObject) {
-        print("chipmunk")
         playWithPitch(1000)
     }
     @IBAction func playVader(sender: AnyObject) {
-        print("I'm joinging the dark side!!!!")
         playWithPitch(-1000)
     }
     @IBAction func playFast(sender: AnyObject) {
-        print("fast")
         playWithSpeed(2.0)
     }
     @IBAction func playSlow(sender: AnyObject) {
-        print("slow")
         playWithSpeed(0.5)
     }
     @IBAction func playEcho(sender: AnyObject) {
-        print("echo")
         playWithEcho(0.2)
     }
 
     @IBAction func playReverb(sender: AnyObject) {
-        print("reverb")
         playWithReverb()
     }
     
     @IBAction func stopPlaying(sender: AnyObject) {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopResetAll()
     }
-    
-    
     
 }
