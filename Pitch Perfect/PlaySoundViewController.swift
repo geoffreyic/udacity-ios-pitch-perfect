@@ -44,26 +44,11 @@ class PlaySoundViewController: UIViewController {
 	}
 	
 	func playWithPitch(pitch: Float){
-		stopResetAll()
 		
-		let audioNode = AVAudioPlayerNode()
 		let audioTimePitch = AVAudioUnitTimePitch()
 		audioTimePitch.pitch = pitch
 		
-		audioEngine.attachNode(audioNode)
-		audioEngine.attachNode(audioTimePitch)
-		
-		audioEngine.connect(audioNode, to:audioTimePitch, format: nil)
-		audioEngine.connect(audioTimePitch as AVAudioNode, to:audioEngine.outputNode, format: nil)
-		
-		audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
-		do{
-			try audioEngine.start()
-		}catch{
-			ErrorMessage.hidden = false
-		}
-		
-		audioNode.play()
+		playAudioNodeEffect(audioTimePitch)
 	}
 	
 	
@@ -77,41 +62,34 @@ class PlaySoundViewController: UIViewController {
 	}
 	
 	func playWithEcho(delay: Float){
-		stopResetAll()
 		
-		let audioNode = AVAudioPlayerNode()
 		let audioUnitDelay = AVAudioUnitDelay()
 		audioUnitDelay.delayTime = NSTimeInterval(delay)
 		
-		audioEngine.attachNode(audioNode)
-		audioEngine.attachNode(audioUnitDelay)
-		
-		audioEngine.connect(audioNode, to:audioUnitDelay, format: nil)
-		audioEngine.connect(audioUnitDelay as AVAudioNode, to:audioEngine.outputNode, format: nil)
-		
-		audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
-		do{
-			try audioEngine.start()
-		}catch{
-			ErrorMessage.hidden = false
-		}
-		
-		audioNode.play()
+		playAudioNodeEffect(audioUnitDelay)
 	}
 	
-	func playWithReverb(){
+	func playWithReverb(preset:AVAudioUnitReverbPreset){
+		
+		let audioUnitReverb = AVAudioUnitReverb()
+		audioUnitReverb.loadFactoryPreset(preset)
+		audioUnitReverb.wetDryMix = 50
+		
+		playAudioNodeEffect(audioUnitReverb)
+	}
+	
+	
+	// new function that accepts AVAudioNode effect. thanks for the feedback!
+	func playAudioNodeEffect(effect:AVAudioNode){
 		stopResetAll()
 		
 		let audioNode = AVAudioPlayerNode()
-		let audioUnitReverb = AVAudioUnitReverb()
-		audioUnitReverb.loadFactoryPreset(.LargeHall)
-		audioUnitReverb.wetDryMix = 50
 		
 		audioEngine.attachNode(audioNode)
-		audioEngine.attachNode(audioUnitReverb)
+		audioEngine.attachNode(effect)
 		
-		audioEngine.connect(audioNode, to:audioUnitReverb, format: nil)
-		audioEngine.connect(audioUnitReverb as AVAudioNode, to:audioEngine.outputNode, format: nil)
+		audioEngine.connect(audioNode, to:effect, format: nil)
+		audioEngine.connect(effect as AVAudioNode, to:audioEngine.outputNode, format: nil)
 		
 		audioNode.scheduleFile(self.audioFile, atTime: nil, completionHandler: nil)
 		do{
@@ -153,7 +131,7 @@ class PlaySoundViewController: UIViewController {
 	}
 	
 	@IBAction func playReverb(sender: AnyObject) {
-		playWithReverb()
+		playWithReverb(AVAudioUnitReverbPreset.LargeHall)
 	}
 	
 	@IBAction func stopPlaying(sender: AnyObject) {
