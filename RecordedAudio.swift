@@ -9,10 +9,10 @@
 import Foundation
 
 class RecordedAudio: NSObject{
-    var url: NSURL!
-    var title: String!
-    
-    init(url:NSURL){
-        self.url = url
-    }
+	var url: NSURL!
+	var title: String!
+	
+	init(url:NSURL){
+		self.url = url
+	}
 }
