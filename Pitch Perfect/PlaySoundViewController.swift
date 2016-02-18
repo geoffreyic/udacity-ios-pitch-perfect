@@ -79,8 +79,8 @@ class PlaySoundViewController: UIViewController {
 	}
 	
 	
-	// new function that accepts AVAudioNode effect. thanks for the feedback!
-	func playAudioNodeEffect(effect:AVAudioNode){
+	// New function that accepts AVAudioUnit effect. Thanks for the feedback!
+	func playAudioNodeEffect(effect:AVAudioUnit){
 		stopResetAll()
 		
 		let audioNode = AVAudioPlayerNode()
