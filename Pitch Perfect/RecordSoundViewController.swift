@@ -68,7 +68,7 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
         if(recorder.recording){
             PauseResumeButton.setImage(UIImage(named: "Resume"), forState: .Normal)
             recorder.pause()
-            RecordText.text = "Press resume to resume recording"
+            RecordText.text = "Tap resume to continue recording"
         }else{
             PauseResumeButton.setImage(UIImage(named: "Pause"), forState: .Normal)
             recorder.record()
@@ -77,7 +77,7 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @IBAction func stopRecording(sender: AnyObject) {
-        RecordText.text = "Press Microphone to Record"
+        RecordText.text = "Tap Microphone to Record"
         Microphone.enabled = true
         PauseResumeButton.setImage(UIImage(named: "Pause"), forState: .Normal)
         PauseResumeButton.hidden = true
@@ -93,11 +93,11 @@ class RecordSoundViewController: UIViewController, AVAudioRecorderDelegate {
             ErrorMessage.hidden = false
         }
         
-        recordedAudio = RecordedAudio(url: recorder.url)
     }
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
+            recordedAudio = RecordedAudio(url: recorder.url)
             self.performSegueWithIdentifier("PlayRecordingSegue", sender: recordedAudio)
         }else{
             ErrorMessage.hidden = false
